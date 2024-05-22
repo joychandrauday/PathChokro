@@ -1,0 +1,9 @@
+.menu li > *:not(ul, .menu-title, details, .btn):active, .menu li > *:not(ul, .menu-title, details, .btn).active, .menu li > details > summary:active{
+    background-color: transparent !important;
+    color: darkblue;
+}
+.menu li{
+    font-size: 15px;
+    font-weight:600;
+    margin:0 4px ;
+}
