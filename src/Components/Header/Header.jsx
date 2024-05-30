@@ -82,11 +82,11 @@ const Header = () => {
           </div>
           <div>
             
-            <a href="/" className=" relative text-xl flex items-center">
+            <a href="/" className="w-3/6 relative text-xl flex items-center">
               <img
                 src="https://i.ibb.co/c2tW6ZT/Colorful-Modern-Infinity-Technology-Free-Logo-1-2.png"
                 alt=""
-                className="w-3/6 logo"
+                className=""
               />
             </a>
           </div>

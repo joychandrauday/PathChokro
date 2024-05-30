@@ -61,11 +61,11 @@ const SignUp = () => {
   return (
     <div className="bg-newsletter bg-center lg:min-h-screen items-center flex p-4">
       <Helmet>
-        <title>Sign Up here.</title>
+        <title>সাইন আপ করুন।</title>
       </Helmet>
       <div className="container mx-auto card max-w-4xl shadow-2xl lg:*:bg-base-100 rounded">
-        <h1 className="lg:text-3xl text-2xl px-8 pt-8 capitalize font-bold text-white">
-          register your account here
+        <h1 className="lg:text-3xl text-2xl p-8 capitalize font-bold ">
+          আপনার একাউন্ট রেজিস্টার করুন।
         </h1>
         <form
           className="card-body pt-0 lg:grid grid-cols-2"
@@ -74,11 +74,11 @@ const SignUp = () => {
           <div className="basis-1/2">
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Name</span>
+                <span className="label-text">আপনার নাম:</span>
               </label>
               <input
                 type="text"
-                placeholder="Name"
+                placeholder="নাম লিখুন(বাংলা/ইংরেজি)"
                 className="input input-bordered"
                 required
                 {...register("Name")}
@@ -86,11 +86,11 @@ const SignUp = () => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Photo URL</span>
+                <span className="label-text">ছবির লিংক:</span>
               </label>
               <input
                 type="text"
-                placeholder="Image URL"
+                placeholder="ছবির লিংক দিন"
                 className="input input-bordered"
                 required
                 {...register("photoURL")}
@@ -98,12 +98,12 @@ const SignUp = () => {
             </div>
             <label className="label hidden lg:block capitalize ">
               <p>
-                already have an account?
+                একাউন্ট আছে? 
                 <Link
                   to={"/sign-in"}
                   className="link  link-hover text-purple-950"
                 >
-                  log in
+                  লগ ইন করুন
                 </Link>
               </p>
             </label>
@@ -111,11 +111,11 @@ const SignUp = () => {
           <div className="basis-1/2">
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Email</span>
+                <span className="label-text">ইমেইল একাউন্ট</span>
               </label>
               <input
                 type="email"
-                placeholder="email"
+                placeholder="ইমেইল একাউন্ট দিন"
                 className="input input-bordered"
                 required
                 {...register("email")}
@@ -123,11 +123,11 @@ const SignUp = () => {
             </div>
             <div className="form-control relative">
               <label className="label">
-                <span className="label-text">Password</span>
+                <span className="label-text">পাসওয়ার্ড দিন:</span>
               </label>
               <input
                 type={showPassword ? "text" : "password"}
-                placeholder="password"
+                placeholder="পাসওয়ার্ড দিন:"
                 className="input input-bordered"
                 {...register("password", {
                   required: {
@@ -160,7 +160,7 @@ const SignUp = () => {
                 )}
               </div>
             </div>
-            <label className="label capitalize ">
+            <label className="label capitalize hidden">
               <p>
                 already have an account?
                 <Link
@@ -173,7 +173,7 @@ const SignUp = () => {
             </label>
             <div className="form-control mt-2">
               <button className="btn hover:text-basic bg-blue-950 w-full text-white capitalize">
-                register
+                রেজিস্টার করুন
               </button>
             </div>
           </div>

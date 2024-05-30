@@ -14,6 +14,7 @@ import OurStories from './../Pages/AboutUs/OurStories';
 import FeaturedBooks from '../Pages/FeaturedBooks/FeaturedBooks';
 import PrivateRoute from '../Private Route/PrivateRoute';
 import Dashboard from '../Pages/Dashboard/Dashboard';
+import AddEvents from '../Pages/AddEvents/AddEvents';
 
 
 const router = createBrowserRouter([
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
         {
           path: "/dashboard",
           element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        },
+        {
+          path: "/add-event",
+          element: <PrivateRoute><AddEvents></AddEvents></PrivateRoute>,
         },
 
         {
