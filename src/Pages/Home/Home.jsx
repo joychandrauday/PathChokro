@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import BannerSlider from "./HomeComponents/BannerSlider";
-import UpcomingEventsSlider from "./HomeComponents/UpcomingEventsSlider";
+import UpcomingEventsSlider from "../../Components/eventSlide/UpcomingEventsSlider";
 
 const Home = () => {
   return (
@@ -11,7 +11,7 @@ const Home = () => {
       <div className="flex items-center justify-center w-full">
         <BannerSlider></BannerSlider>
       </div>
-      <div className="upcommingEvents py-8">
+      <div className="upcommingEvents py-24">
         <div>
           <UpcomingEventsSlider></UpcomingEventsSlider>
         </div>

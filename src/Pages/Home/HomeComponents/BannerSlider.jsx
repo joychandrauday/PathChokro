@@ -8,15 +8,14 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import "./eventslide.css";
-
+import '../HomeComponents/styles.css'
 // import required modules
 import { Parallax, Pagination, Navigation } from "swiper/modules";
 import { Link } from "react-router-dom";
 
 const BannerSlider = () => {
   return (
-    <>
+    < >
       <Swiper
         style={{
           "--swiper-navigation-color": "#fff",
@@ -29,7 +28,7 @@ const BannerSlider = () => {
         }}
         navigation={true}
         modules={[Parallax, Pagination, Navigation]}
-        className="mySwiper"
+        className="mySwiper bannerSlide min-h-[70vh]"
       >
         <div
           slot="container-start"
@@ -41,13 +40,13 @@ const BannerSlider = () => {
           }}
           data-swiper-parallax="-23%"
         ></div>
-        <SwiperSlide>
-          <div className="flex justify-center items-center flex-col min-h-[70vh]">
+        <SwiperSlide className="">
+          <div className="flex justify-center items-center flex-col ">
             <div className="title" data-swiper-parallax="-300">
               <img
                 src="https://i.ibb.co/YdFnxW3/Colorful-Modern-Infinity-Technology-Free-Logo.png"
                 alt=""
-                className="w-2/6 mx-auto rounded-lg logo"
+                className="w-2/6 mx-auto bannerSlideImg rounded-lg"
               />
             </div>
             <div
@@ -78,7 +77,7 @@ const BannerSlider = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-        <div className="flex justify-center items-center flex-col min-h-[70vh]">
+        <div className="flex justify-center items-center flex-col">
             <div className="title" data-swiper-parallax="-300">
               <img
                 src="https://i.ibb.co/YdFnxW3/Colorful-Modern-Infinity-Technology-Free-Logo.png"

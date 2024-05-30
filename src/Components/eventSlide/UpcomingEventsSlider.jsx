@@ -1,16 +1,16 @@
 import React from "react";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
-import "./styles.css";
+import "./eventslide.css";
 
 // import required modules
 import { EffectCoverflow, Pagination } from "swiper/modules";
-import { FaBangladeshiTakaSign, FaLocationArrow, FaMapLocation } from "react-icons/fa6";
+import { FaBangladeshiTakaSign, FaBookAtlas, FaLocationArrow, FaMapLocation, FaUsers } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const UpcomingEventsSlider = () => {
@@ -36,10 +36,10 @@ const UpcomingEventsSlider = () => {
   console.log(events);
   return (
     <div>
-      <h1 className="lg:text-4xl text-2xl p-8 capitalize font-bold text-center">
-        পরবর্তী চক্রসমূহ
-      </h1>
       <div className="h-[600px]">
+        <h1 className="lg:text-4xl text-2xl p-8 capitalize font-bold text-center">
+          পরবর্তী চক্রসমূহ
+        </h1>
         <Swiper
           effect={"coverflow"}
           grabCursor={true}
@@ -58,16 +58,16 @@ const UpcomingEventsSlider = () => {
         >
           {events.map((event) => (
             <SwiperSlide key={event.id}>
-              <div className="card w-96 bg-basic  rounded-none">
+              <div className="card w-96 bg-basic  rounded-none border">
                 <figure className="h-52 relative bg-center bg-no-repeat bg-cover" style={{
                     backgroundImage:`url(${event?.featuredImage})`
                 }}>
-                  <div className="absolute top-2 right-2 badge rounded bg-second text-white font-bold text-xl p-3">{event?.costOrFees>0 ?(
+                  <div className="absolute top-2 right-2 badge rounded bg-second text-white font-bold text-xl p-4">{event?.costOrFees>0 ?(
                         <>
-                        {formatToBangla(event?.costOrFees)} <FaBangladeshiTakaSign />
+                        {formatToBangla(event?.costOrFees)} <FaBangladeshiTakaSign className="font-bold"/>
                       </>
                     ):(
-                        'free'
+                        'ফ্রি'
                     )} </div>
                 </figure>
                 <div className="card-body">
@@ -79,12 +79,21 @@ const UpcomingEventsSlider = () => {
                     <p className="flex gap-2 items-center"><FaLocationArrow></FaLocationArrow> {event?.location.physicalLocation}</p>
                   </div>
                   <div className="flex items-center gap-4 text-sm">
-                    <p className="flex gap-2 justify-end items-center"><FaMapLocation></FaMapLocation> <Link to={`${event?.location.liveMap}`} className="bg-yellow-400 px-4  rounded-none py-1 btn-warning">Live Location</Link></p>
+                    <p className="flex gap-2 justify-end items-center"><FaMapLocation></FaMapLocation> <Link to={`${event?.location.liveMap}`} className="bg-yellow-400 px-4  rounded-none py-1 btn-warning">লাইভ লোকেশন </Link></p>
                   </div>
-                  <div className="card-actions justify-between">
-                    <div className="">{event?.speakers.name}</div>
-                    <div className="badge badge-outline">{event?.featuredBook}</div>
+                  <div className="card-actions justify-between ">
+                    <div>
+                    <div className="">অতিথী বক্তা: {event?.speakers.name}</div>
+                    <div className="badge badge-outline gap-"><FaBookAtlas></FaBookAtlas> আলোচ্য বই: {event?.featuredBook}</div>
+                    </div>
+                    <div className="badge badge-outline gap-3"><FaUsers></FaUsers>  রেজিস্ট্রেশন করেছেন: ১০ জন</div>
                   </div>
+                  <button
+              type="submit"
+              className="btn btn-primary bg-second rounded-none text-white font-bold self-center w-full"
+            >
+              রেজিস্ট্রেশন করুন
+            </button>
                 </div>
               </div>
             </SwiperSlide>
