@@ -10,6 +10,8 @@ import "./styles.css";
 
 // import required modules
 import { EffectCoverflow, Pagination } from "swiper/modules";
+import { FaBangladeshiTakaSign, FaLocationArrow, FaMapLocation } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const UpcomingEventsSlider = () => {
   const axiosSecure = useAxiosSecure();
@@ -28,14 +30,16 @@ const UpcomingEventsSlider = () => {
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error fetching events data</div>;
-
+  const formatToBangla=(number)=>{
+    return number.toLocaleString('bn-BD');
+  }
   console.log(events);
   return (
     <div>
       <h1 className="lg:text-4xl text-2xl p-8 capitalize font-bold text-center">
         পরবর্তী চক্রসমূহ
       </h1>
-      <div className="">
+      <div className="h-[600px]">
         <Swiper
           effect={"coverflow"}
           grabCursor={true}
@@ -54,19 +58,32 @@ const UpcomingEventsSlider = () => {
         >
           {events.map((event) => (
             <SwiperSlide key={event.id}>
-              <div className="card w-96 bg-base-100 shadow-xl">
-                <figure>
-                  <img src={event?.featuredImage} alt="Shoes" />
+              <div className="card w-96 bg-basic  rounded-none">
+                <figure className="h-52 relative bg-center bg-no-repeat bg-cover" style={{
+                    backgroundImage:`url(${event?.featuredImage})`
+                }}>
+                  <div className="absolute top-2 right-2 badge rounded bg-second text-white font-bold text-xl p-3">{event?.costOrFees>0 ?(
+                        <>
+                        {formatToBangla(event?.costOrFees)} <FaBangladeshiTakaSign />
+                      </>
+                    ):(
+                        'free'
+                    )} </div>
                 </figure>
                 <div className="card-body">
                   <h2 className="card-title">
-                    Shoes!
-                    <div className="badge badge-secondary">NEW</div>
+                    {event?.eventTitle}
                   </h2>
-                  <p>If a dog chews shoes whose shoes does he choose?</p>
-                  <div className="card-actions justify-end">
-                    <div className="badge badge-outline">Fashion</div>
-                    <div className="badge badge-outline">Products</div>
+                  <div className="flex justify-between items-center gap-4 text-sm">
+                    <p>{event.dateTime}</p>
+                    <p className="flex gap-2 items-center"><FaLocationArrow></FaLocationArrow> {event?.location.physicalLocation}</p>
+                  </div>
+                  <div className="flex items-center gap-4 text-sm">
+                    <p className="flex gap-2 justify-end items-center"><FaMapLocation></FaMapLocation> <Link to={`${event?.location.liveMap}`} className="bg-yellow-400 px-4  rounded-none py-1 btn-warning">Live Location</Link></p>
+                  </div>
+                  <div className="card-actions justify-between">
+                    <div className="">{event?.speakers.name}</div>
+                    <div className="badge badge-outline">{event?.featuredBook}</div>
                   </div>
                 </div>
               </div>
