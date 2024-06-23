@@ -54,7 +54,7 @@ const Header = () => {
   );
   return (
     <div>
-      <div className="navbar bg-base-100 container mx-auto py-4">
+      <div className="navbar  bg-base-100 container mx-auto py-4">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -94,7 +94,7 @@ const Header = () => {
         {/* <div className="navbar-center hidden lg:flex">
           
         </div> */}
-        <div className="navbar">
+        <div className="navbar justify-end">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
           <label className="swap swap-rotate pr-8">
             {/* this hidden checkbox controls the state */}

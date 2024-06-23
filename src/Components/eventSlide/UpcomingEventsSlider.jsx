@@ -10,7 +10,13 @@ import "./eventslide.css";
 
 // import required modules
 import { EffectCoverflow, Pagination } from "swiper/modules";
-import { FaBangladeshiTakaSign, FaBookAtlas, FaLocationArrow, FaMapLocation, FaUsers } from "react-icons/fa6";
+import {
+  FaBangladeshiTakaSign,
+  FaBookAtlas,
+  FaLocationArrow,
+  FaMapLocation,
+  FaUsers,
+} from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const UpcomingEventsSlider = () => {
@@ -30,9 +36,9 @@ const UpcomingEventsSlider = () => {
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error fetching events data</div>;
-  const formatToBangla=(number)=>{
-    return number.toLocaleString('bn-BD');
-  }
+  const formatToBangla = (number) => {
+    return number.toLocaleString("bn-BD");
+  };
   console.log(events);
   return (
     <div>
@@ -59,41 +65,63 @@ const UpcomingEventsSlider = () => {
           {events.map((event) => (
             <SwiperSlide key={event.id}>
               <div className="card w-96 bg-basic  rounded-none border">
-                <figure className="h-52 relative bg-center bg-no-repeat bg-cover" style={{
-                    backgroundImage:`url(${event?.featuredImage})`
-                }}>
-                  <div className="absolute top-2 right-2 badge rounded bg-second text-white font-bold text-xl p-4">{event?.costOrFees>0 ?(
-                        <>
-                        {formatToBangla(event?.costOrFees)} <FaBangladeshiTakaSign className="font-bold"/>
+                <figure
+                  className="h-52 relative bg-center bg-no-repeat bg-cover"
+                  style={{
+                    backgroundImage: `url(${event?.featuredImage})`,
+                  }}
+                >
+                  <div className="absolute top-2 right-2 badge rounded bg-second text-white font-bold text-xl p-4">
+                    {event?.costOrFees > 0 ? (
+                      <>
+                        {formatToBangla(event?.costOrFees)}{" "}
+                        <FaBangladeshiTakaSign className="font-bold" />
                       </>
-                    ):(
-                        'ফ্রি'
-                    )} </div>
+                    ) : (
+                      "ফ্রি"
+                    )}{" "}
+                  </div>
                 </figure>
                 <div className="card-body">
-                  <h2 className="card-title">
-                    {event?.eventTitle}
-                  </h2>
+                  <h2 className="card-title">{event?.eventTitle}</h2>
                   <div className="flex justify-between items-center gap-4 text-sm">
                     <p>{event.dateTime}</p>
-                    <p className="flex gap-2 items-center"><FaLocationArrow></FaLocationArrow> {event?.location.physicalLocation}</p>
+                    <p className="flex gap-2 items-center">
+                      <FaLocationArrow></FaLocationArrow>{" "}
+                      {event?.location.physicalLocation}
+                    </p>
                   </div>
                   <div className="flex items-center gap-4 text-sm">
-                    <p className="flex gap-2 justify-end items-center"><FaMapLocation></FaMapLocation> <Link to={`${event?.location.liveMap}`} className="bg-yellow-400 px-4  rounded-none py-1 btn-warning">লাইভ লোকেশন </Link></p>
+                    <p className="flex gap-2 justify-end items-center">
+                      <FaMapLocation></FaMapLocation>{" "}
+                      <Link
+                        to={`${event?.location.liveMap}`}
+                        className="bg-yellow-400 px-4  rounded-none py-1 btn-warning"
+                      >
+                        লাইভ লোকেশন{" "}
+                      </Link>
+                    </p>
                   </div>
                   <div className="card-actions justify-between ">
                     <div>
-                    <div className="">অতিথী বক্তা: {event?.speakers.name}</div>
-                    <div className="badge badge-outline gap-"><FaBookAtlas></FaBookAtlas> আলোচ্য বই: {event?.featuredBook}</div>
+                      <div className="">
+                        অতিথী বক্তা: {event?.speakers.name}
+                      </div>
+                      <div className="badge badge-outline gap-">
+                        <FaBookAtlas></FaBookAtlas> আলোচ্য বই:{" "}
+                        {event?.featuredBook}
+                      </div>
                     </div>
-                    <div className="badge badge-outline gap-3"><FaUsers></FaUsers>  রেজিস্ট্রেশন করেছেন: ১০ জন</div>
+                    <div className="badge badge-outline gap-3">
+                      <FaUsers></FaUsers> রেজিস্ট্রেশন করেছেন: ১০ জন
+                    </div>
                   </div>
                   <button
-              type="submit"
-              className="btn btn-primary bg-second rounded-none text-white font-bold self-center w-full"
-            >
-              রেজিস্ট্রেশন করুন
-            </button>
+                    type="submit"
+                    className="btn btn-primary bg-second rounded-none text-white font-bold self-center w-full"
+                  >
+                    রেজিস্ট্রেশন করুন
+                  </button>
                 </div>
               </div>
             </SwiperSlide>
