@@ -31,7 +31,12 @@ const BannerSlider = () => {
     },
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <div className="min-h-96 flex items-center justify-center">
+        <span className="loading loading-spinner loading-md"></span>
+      </div>
+    );
   if (isError) return <div>Error fetching events data</div>;
 
   const {
@@ -67,7 +72,7 @@ const BannerSlider = () => {
         }}
         navigation={true}
         modules={[Parallax, Pagination, Navigation]}
-        className="mySwiper bannerSlide min-h-[70vh]"
+        className="mySwiper bannerSlide min-h-[80vh]"
       >
         <div
           slot="container-start"

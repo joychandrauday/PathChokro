@@ -1,44 +1,45 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { ScrollRestoration, useParams } from "react-router-dom";
+import useAxiosSecure, { axiosSecure } from "../../Hooks/useAxiosSecure";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
 import useFormatToBangle from "../../Hooks/useFormatToBangle";
 import { Helmet } from "react-helmet-async";
-import { ScrollRestoration } from "react-router-dom";
-
-const Events = () => {
+const SingleEvent = () => {
+  const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   const { formatToBengaliDate } = useFormatToBangle();
   const [isEventExpired, setIsEventExpired] = useState(false);
 
   const {
-    data: latestEvent = {},
+    data: event = {},
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["latest-event"],
+    queryKey: ["event", id], // Include id in queryKey for caching
     queryFn: async () => {
-      const res = await axiosSecure.get("/latest-event");
+      const res = await axiosSecure.get(`/event/${id}`);
       return res.data;
     },
   });
-
   useEffect(() => {
-    if (latestEvent.dateTime) {
-      const eventDate = new Date(latestEvent.dateTime);
+    if (event.dateTime) {
+      const eventDate = new Date(event.dateTime);
       const currentDate = new Date();
       setIsEventExpired(currentDate > eventDate);
     }
-  }, [latestEvent]);
-
-  if (isLoading)
+  }, [event]);
+  if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <span className="loading loading-spinner loading-md"></span>
       </div>
     );
-  if (isError) return <div>Error fetching events data</div>;
+  }
 
+  if (isError) {
+    return <div>Error fetching story data</div>;
+  }
   const {
     agenda = [],
     costOrFees,
@@ -52,7 +53,7 @@ const Events = () => {
     registrationDeadline,
     speakers = {},
     _id,
-  } = latestEvent;
+  } = event;
 
   const formatToBangla = (number) => {
     return number.toLocaleString("bn-BD");
@@ -60,7 +61,6 @@ const Events = () => {
 
   const bengaliFormattedDate = formatToBengaliDate(dateTime);
   const bengaliFormattedDeadline = formatToBengaliDate(registrationDeadline);
-
   return (
     <div>
       <Helmet>
@@ -147,9 +147,9 @@ const Events = () => {
           </div>
         </div>
       </div>
-      <ScrollRestoration></ScrollRestoration>
+      <ScrollRestoration />
     </div>
   );
 };
 
-export default Events;
+export default SingleEvent;

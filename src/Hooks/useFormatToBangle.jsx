@@ -39,15 +39,23 @@ const useFormatToBangle = () => {
     (dateString) => {
       const [datePart, timePart] = dateString.split("T");
       const [year, month, day] = datePart.split("-");
-      // const [hours, minutes] = timePart.split(":");
       
+      if (!year || !month || !day) {
+        throw new Error("Invalid date format");
+      }
+
       const bengaliYear = convertToBengaliNumbers(parseInt(year));
       const bengaliMonth =
         bengaliMonths[parseInt(month) - 1]; // Adjust month index
       const bengaliDay = convertToBengaliNumbers(parseInt(day));
-      // const bengaliTime = formatTimeToBengali(`${hours}:${minutes}`);
+      let bengaliTime = "";
 
-      return ` ${bengaliDay} ${bengaliMonth},${bengaliYear} `;
+      if (timePart) {
+        const [hours, minutes] = timePart.split(":");
+        bengaliTime = formatTimeToBengali(`${hours}:${minutes}`);
+      }
+
+      return `${bengaliDay} ${bengaliMonth}, ${bengaliYear} ${bengaliTime}`;
     },
     [convertToBengaliNumbers, formatTimeToBengali]
   );

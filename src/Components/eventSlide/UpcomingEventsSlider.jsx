@@ -18,6 +18,7 @@ import {
   FaUsers,
 } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const UpcomingEventsSlider = () => {
   const axiosSecure = useAxiosSecure();
@@ -39,9 +40,11 @@ const UpcomingEventsSlider = () => {
   const formatToBangla = (number) => {
     return number.toLocaleString("bn-BD");
   };
-  console.log(events);
   return (
     <div>
+      <Helmet>
+        <title>পরবর্তী চক্রসমূহ | পাঠচক্র</title>
+      </Helmet>
       <div className="h-[600px]">
         <h1 className="lg:text-4xl text-2xl p-8 capitalize font-bold text-center">
           পরবর্তী চক্রসমূহ
@@ -62,7 +65,7 @@ const UpcomingEventsSlider = () => {
           modules={[EffectCoverflow, Pagination]}
           className="mySwiper "
         >
-          {events.map((event) => (
+          {events.slice(0,5).map((event) => (
             <SwiperSlide key={event.id}>
               <div className="card w-96 bg-basic  rounded-none border">
                 <figure
@@ -116,12 +119,12 @@ const UpcomingEventsSlider = () => {
                       <FaUsers></FaUsers> রেজিস্ট্রেশন করেছেন: ১০ জন
                     </div>
                   </div>
-                  <button
+                  <Link to={`/event/${event._id}`}
                     type="submit"
                     className="btn btn-primary bg-second rounded-none text-white font-bold self-center w-full"
                   >
                     রেজিস্ট্রেশন করুন
-                  </button>
+                  </Link>
                 </div>
               </div>
             </SwiperSlide>
