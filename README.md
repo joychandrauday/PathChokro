@@ -1,4 +1,4 @@
-# [Path Chokro!](https://pathchokro-5e1d8.web.app/)
+# [Path Chokro!](https://pathchokro-5e1d8.web.app/) (currently in development)
 
 Welcome to Path Chokro! This is our weekly online gathering where we read books together and discuss them. Our goal is to enhance knowledge and create a community among readers through engaging discussions and shared reading experiences.
 
